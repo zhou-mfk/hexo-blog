@@ -96,27 +96,25 @@
 
 
 
-  <meta name="description" content="Rsyslog 介绍 Rsyslog 版本说明 ，此文的配置主要是在v8.19.0以上的配置，低版本的配置就不再写了，有需要的朋友可以到网上去找找。 来看一下官方网站的提供的一张图片，具体的介绍官方网站说的比较详细   我是在CentOS下安装的Rsyslog v 8.19.0版本，也可以安装更高的版本，CentOS下默认已安装的v5.18的版本，此版本比较低，可以升级到更高的版本. 安装方法见上">
-<meta name="keywords" content="Rsyslog,运维,日志">
+  <meta name="description" content="ElasticSearch 使用过程相关方法和配置磁盘相关设置elasticsearch集群磁盘空间使用百分比 在elasticsearch 5.x以上的版本最好使用百分比来调整集群磁盘空间，默认85%时就不会有数据写入。设置方法如下: 12345678curl -X PUT http://your_elastic_server:9200/_cluster/settings -d \&apos;&amp;#123;">
+<meta name="keywords" content="elastic,ELK,elasticsearch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rsyslog(二) 配置介绍">
-<meta property="og:url" content="http://zhou-mfk.github.io/2019/01/06/rsyslog-config/index.html">
+<meta property="og:title" content="elasticsearch_use_function">
+<meta property="og:url" content="http://zhou-mfk.github.io/2019/01/07/elasticsearch-use-function/index.html">
 <meta property="og:site_name" content="点滴记录">
-<meta property="og:description" content="Rsyslog 介绍 Rsyslog 版本说明 ，此文的配置主要是在v8.19.0以上的配置，低版本的配置就不再写了，有需要的朋友可以到网上去找找。 来看一下官方网站的提供的一张图片，具体的介绍官方网站说的比较详细   我是在CentOS下安装的Rsyslog v 8.19.0版本，也可以安装更高的版本，CentOS下默认已安装的v5.18的版本，此版本比较低，可以升级到更高的版本. 安装方法见上">
+<meta property="og:description" content="ElasticSearch 使用过程相关方法和配置磁盘相关设置elasticsearch集群磁盘空间使用百分比 在elasticsearch 5.x以上的版本最好使用百分比来调整集群磁盘空间，默认85%时就不会有数据写入。设置方法如下: 12345678curl -X PUT http://your_elastic_server:9200/_cluster/settings -d \&apos;&amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhou-mfk.github.io/2019/01/06/rsyslog-config/rsyslog-features-imagemap.png">
-<meta property="og:updated_time" content="2019-01-07T12:09:07.501Z">
+<meta property="og:updated_time" content="2019-01-07T12:58:34.857Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rsyslog(二) 配置介绍">
-<meta name="twitter:description" content="Rsyslog 介绍 Rsyslog 版本说明 ，此文的配置主要是在v8.19.0以上的配置，低版本的配置就不再写了，有需要的朋友可以到网上去找找。 来看一下官方网站的提供的一张图片，具体的介绍官方网站说的比较详细   我是在CentOS下安装的Rsyslog v 8.19.0版本，也可以安装更高的版本，CentOS下默认已安装的v5.18的版本，此版本比较低，可以升级到更高的版本. 安装方法见上">
-<meta name="twitter:image" content="http://zhou-mfk.github.io/2019/01/06/rsyslog-config/rsyslog-features-imagemap.png">
+<meta name="twitter:title" content="elasticsearch_use_function">
+<meta name="twitter:description" content="ElasticSearch 使用过程相关方法和配置磁盘相关设置elasticsearch集群磁盘空间使用百分比 在elasticsearch 5.x以上的版本最好使用百分比来调整集群磁盘空间，默认85%时就不会有数据写入。设置方法如下: 12345678curl -X PUT http://your_elastic_server:9200/_cluster/settings -d \&apos;&amp;#123;">
 
 
 
 
 
 
-  <link rel="canonical" href="http://zhou-mfk.github.io/2019/01/06/rsyslog-config/">
+  <link rel="canonical" href="http://zhou-mfk.github.io/2019/01/07/elasticsearch-use-function/">
 
 
 
@@ -126,7 +124,7 @@
   };
 </script>
 
-  <title>Rsyslog(二) 配置介绍 | 点滴记录</title>
+  <title>elasticsearch_use_function | 点滴记录</title>
   
 
 
@@ -346,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhou-mfk.github.io/2019/01/06/rsyslog-config/">
+    <link itemprop="mainEntityOfPage" href="http://zhou-mfk.github.io/2019/01/07/elasticsearch-use-function/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhou Li Shan">
@@ -363,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Rsyslog(二) 配置介绍
+          <h1 class="post-title" itemprop="name headline">elasticsearch_use_function
 
               
             
@@ -389,24 +387,12 @@
                 
               
 
-              <time title="创建时间：2019-01-06 20:34:40" itemprop="dateCreated datePublished" datetime="2019-01-06T20:34:40+08:00">2019-01-06</time>
+              <time title="创建时间：2019-01-07 20:25:27 / 修改时间：20:58:34" itemprop="dateCreated datePublished" datetime="2019-01-07T20:25:27+08:00">2019-01-07</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-07 20:09:07" itemprop="dateModified" datetime="2019-01-07T20:09:07+08:00">2019-01-07</time>
               
             
           </span>
@@ -423,7 +409,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ELK/" itemprop="url" rel="index"><span itemprop="name">ELK</span></a></span>
 
                 
                 
@@ -457,29 +443,33 @@
       
 
       
-        <h4 id="Rsyslog-介绍"><a href="#Rsyslog-介绍" class="headerlink" title="Rsyslog 介绍"></a>Rsyslog 介绍</h4><ul>
-<li>Rsyslog 版本说明 ，此文的配置主要是在v8.19.0以上的配置，低版本的配置就不再写了，有需要的朋友可以到网上去找找。</li>
-<li>来看一下官方网站的提供的一张图片，具体的介绍官方网站说的比较详细<br><img src="/2019/01/06/rsyslog-config/rsyslog-features-imagemap.png" alt="rsyslog"></li>
-</ul>
-<ul>
-<li>我是在CentOS下安装的Rsyslog v 8.19.0版本，也可以安装更高的版本，CentOS下默认已安装的v5.18的版本，此版本比较低，可以升级到更高的版本. 安装方法见上篇文章</li>
-<li><h4 id="Rsyslog-配置介绍"><a href="#Rsyslog-配置介绍" class="headerlink" title="Rsyslog 配置介绍"></a>Rsyslog 配置介绍</h4></li>
-<li>配置文件<br>主配置文件 /etc/rsyslog.conf<br>以下是我精简后的配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 工作目录</span></span><br><span class="line"><span class="variable">$WorkDirectory</span> /var/lib/rsyslog</span><br><span class="line"><span class="comment"># 加载的模块，也可以放在其他配置文件中但是只能引用一次，如果多个配置中都进行了module，会有警告出现。</span></span><br><span class="line"><span class="comment"># 以下两个是默认加载的模块</span></span><br><span class="line">module(load=<span class="string">"imuxsock"</span>)</span><br><span class="line">module(load=<span class="string">"imklog"</span>)</span><br><span class="line"><span class="comment"># 用于读取日志文件的模块</span></span><br><span class="line">module(load=<span class="string">"imfile"</span>)</span><br><span class="line"><span class="comment"># 定义的模板</span></span><br><span class="line"><span class="variable">$template</span> IpTemplate,<span class="string">"%HOSTNAME% %syslogtag% %msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%"</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ActionFileDefaultTemplate</span> RSYSLOG_TraditionalFileFormat</span><br><span class="line"><span class="comment"># 其他配置文件目录，在启动后需要加载</span></span><br><span class="line"><span class="variable">$IncludeConfig</span> /etc/rsyslog.d/*.conf</span><br><span class="line"><span class="comment"># 以下的配置是指定的日志内容不写入/var/log/messages文件中</span></span><br><span class="line">*.info;mail.none;authpriv.none;cron.none            /var/<span class="built_in">log</span>/messages</span><br><span class="line">authpriv.*                                              /var/<span class="built_in">log</span>/secure</span><br><span class="line">mail.*                                                  /var/<span class="built_in">log</span>/maillog</span><br><span class="line">cron.*                                                  /var/<span class="built_in">log</span>/cron</span><br><span class="line">*.emerg                                                :omusrmsg:*</span><br><span class="line">uucp,news.crit                                          /var/<span class="built_in">log</span>/spooler</span><br><span class="line">local7.*                                                /var/<span class="built_in">log</span>/boot.log</span><br></pre></td></tr></table></figure>
+        <h1 id="ElasticSearch-使用过程相关方法和配置"><a href="#ElasticSearch-使用过程相关方法和配置" class="headerlink" title="ElasticSearch 使用过程相关方法和配置"></a>ElasticSearch 使用过程相关方法和配置</h1><h2 id="磁盘相关"><a href="#磁盘相关" class="headerlink" title="磁盘相关"></a>磁盘相关</h2><p>设置elasticsearch集群磁盘空间使用百分比</p>
+<p>在elasticsearch 5.x以上的版本最好使用百分比来调整集群磁盘空间，默认85%时就不会有数据写入。设置方法如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT http://your_elastic_server:9200/_cluster/settings -d \</span><br><span class="line">'&#123;</span><br><span class="line">	"transient": &#123;</span><br><span class="line">		"cluster.routing.allocation.disk.watermark.low": "90",</span><br><span class="line">		"cluster.routing.allocation.disk.warmark.high": "95%",</span><br><span class="line">		"cluster.info.update.interval": "1m" </span><br><span class="line">		&#125;</span><br><span class="line">&#125;'</span><br></pre></td></tr></table></figure>
+<h2 id="集群中节点上下线"><a href="#集群中节点上下线" class="headerlink" title="集群中节点上下线"></a>集群中节点上下线</h2><ul>
+<li><p>下线</p>
+<p>当我们需要对集群里的节点下线时，当如何操作呢？ 比如我们需要调整一台主机的内存时。这个时候就需要把这个节点下线掉。如何在保障数据的同时下线主机？操作如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/_cluster/settings -d '&#123;"transient: &#123;"cluster.routing.allocation.exclude._ip":"x.x.x.x"&#125;&#125;'</span><br></pre></td></tr></table></figure>
+<p>之后数据会看到数据从这个节点上迁移到其他主机上, 等到数据移除完后就可以所这台主机的elasticsearch服务停掉了。</p>
+<p>也可以同时下线多台主机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/_cluster/settings -d '&#123;"transient: &#123;"cluster.routing.allocation.exclude._ip":"x.x.x.x, y.y.y.y"&#125;&#125;'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上线</p>
+<p>当主机调整好之后就需要上线, 上线时只需要把cluster.routing.allocation.exclude._ip的值为空即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT 127.0.0.1:9200/_cluster/settings -d '&#123;"transient: &#123;"cluster.routing.allocation.exclude._ip":""&#125;&#125;'</span><br></pre></td></tr></table></figure>
+<p>然后就可以看到数据又从其他节点上同步过来了。</p>
+<p>下面有对使用的cluster.routing.allocation.exclude._ip 这个集群属性的相关说明 </p>
 </li>
 </ul>
-<p>/etc/rsyslog.d 这个目录可以存放其他配置文件</p>
-<h4 id="Rsyslog-常用模块"><a href="#Rsyslog-常用模块" class="headerlink" title="Rsyslog 常用模块"></a>Rsyslog 常用模块</h4><p>Rsyslog常用到模块有输入类的输出类</p>
-<ul>
-<li>imfile # 输入类 读取文件的需要，手动指定 Path绝对路径</li>
-<li>omfile # 输出到文件</li>
-<li>omfwd # 转发模块</li>
-<li>输出类模块见以下链接：<a href="https://www.rsyslog.com/doc/v8-stable/configuration/modules/idx_output.html" target="_blank" rel="noopener">Rsylog输出模块</a></li>
-</ul>
-<h4 id="Rsyslog-TCP-OR-UDP"><a href="#Rsyslog-TCP-OR-UDP" class="headerlink" title="Rsyslog TCP OR UDP"></a>Rsyslog TCP OR UDP</h4><p>Rsyslog 使用TCP还是UDP ？</p>
-<p>一般来说选择TCP都是OK的，除非忍受部分丢失，在意影响性能，可以改用UDP。<br>但是注意：如果你的消息每行大小超过了4k，只能用TCP。这是因为UDP栈大小限制的</p>
-<p>经过测试在udp转发日志时在每秒3000条日志左右就会有丢失，所以在用于收集高并发nginx日志时最好是使用TCP</p>
-<h4 id="Rsyslog-模板"><a href="#Rsyslog-模板" class="headerlink" title="Rsyslog 模板"></a>Rsyslog 模板</h4><p>模板类型有以下几种:<br>List, String等<br>这里只说String(因为只用到了String类型的，也用有json格式的，不过写成String类的，下面有介绍)<br>旧格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$template</span> IpTemplate,<span class="string">"%HOSTNAME% %syslogtag% %msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%"</span></span><br><span class="line"></span><br><span class="line">上面的变量说明</span><br><span class="line"><span class="variable">$templae</span> 定义模板用的</span><br><span class="line">IpTemplate 是模板的名字</span><br><span class="line">%HOSTNAME% 这个是主机名</span><br><span class="line">%syslogtag% 日志的标签,很有用的，如果用于收集nginx日志时就可以把这个标签用于标记不应用的日志</span><br><span class="line">%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf% 这个就是用于解析日志内容的了。</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">也可以在模板中写入主机的ip地址，但是模板不会自动获得ip地址</span><br><span class="line">有一个%fromhost-ip% 这个只是在接收端为rsyslog服务时才会有用，如果服务端换成其他类型的如Graylog时却解析不出ip地址信息</span><br></pre></td></tr></table></figure></p>
-<h4 id="然后"><a href="#然后" class="headerlink" title="然后"></a>然后</h4><p>此篇文章就写了关于rsyslog的配置，但是如何具体使用会在下一篇文章介绍</p>
+<h2 id="集群级别的-include-require-exclude-三种filter影响集群级的shard分配过程"><a href="#集群级别的-include-require-exclude-三种filter影响集群级的shard分配过程" class="headerlink" title="集群级别的 include/require/exclude 三种filter影响集群级的shard分配过程"></a>集群级别的 include/require/exclude 三种filter影响集群级的shard分配过程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cluster.routing.allocation.include.&#123;attribute&#125;: &#123;value&#125; </span><br><span class="line">cluster.routing.allocation.require.&#123;attribute&#125;: &#123;value&#125; </span><br><span class="line">cluster.routing.allocation.exclude.&#123;attribute&#125;: &#123;value&#125;</span><br></pre></td></tr></table></figure>
+<p>其中{attribute} 是节点的属性, 即在es配置文件中以 node. 开头的属性(除了 node.name , node.client 和 node.data 这三个); 其中有4个属性比较特殊, 分别是:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_ip: 表示节点的ip</span><br><span class="line">_host: 表示节点的hostname</span><br><span class="line">_name(或name): 表示节点的名称, 即在Transwarp ES配置文件中的 node.name</span><br><span class="line">_id: 表示节点的id; 节点id是es内部分配的</span><br></pre></td></tr></table></figure>
+<p>{value} 是属性值, 多个值之间用逗号(,)分割; 每个值支持通配符( a<em> , </em>a , <em>a</em> , a*b 这几种)</p>
+<p>{attribute} 和 {value} 构成了一个过滤条件。 </p>
+<p>include/require/exclude 的含义分别是: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">include : 节点的 &#123;attribute&#125; 值包含指定的至少一个value, value中的各个值是OR关系。 </span><br><span class="line">require : 节点的 &#123;attribute&#125; 值包含指定的所有value, value中的各个值是AND关系。 </span><br><span class="line">exclude : 节点的 &#123;attribute&#125; 值不包含指定的所有value。</span><br></pre></td></tr></table></figure>
+<p>每种filter可以指定多个 {attribute} , 多个 {attribute} 之间是AND关系。</p>
+<h2 id="使用cerebro来管理elasticsearch集群"><a href="#使用cerebro来管理elasticsearch集群" class="headerlink" title="使用cerebro来管理elasticsearch集群"></a>使用cerebro来管理elasticsearch集群</h2><p>在elastic 5.0之后 kopf插件就算是不能再用了。还好找到一个好的开源的工具cerebro,安装及配置非简单一个二进制文档就行了。功能与kopf一样。与elastic偶合度低。github 地址: <a href="https://github.com/lmenezes/cerebro" target="_blank" rel="noopener">Cerebro</a></p>
 
       
     </div>
@@ -503,11 +493,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Rsyslog/" rel="tag"># Rsyslog</a>
+            <a href="/tags/elastic/" rel="tag"># elastic</a>
           
-            <a href="/tags/运维/" rel="tag"># 运维</a>
+            <a href="/tags/ELK/" rel="tag"># ELK</a>
           
-            <a href="/tags/日志/" rel="tag"># 日志</a>
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
           
         </div>
       
@@ -520,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/06/rsyslog-install/" rel="next" title="Rsyslog(一) 安装">
-                <i class="fa fa-chevron-left"></i> Rsyslog(一) 安装
+              <a href="/2019/01/06/rsyslog-config/" rel="next" title="Rsyslog(二) 配置介绍">
+                <i class="fa fa-chevron-left"></i> Rsyslog(二) 配置介绍
               </a>
             
           </div>
@@ -529,10 +519,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/07/elasticsearch-use-function/" rel="prev" title="elasticsearch_use_function">
-                elasticsearch_use_function <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsyslog-介绍"><span class="nav-number">1.</span> <span class="nav-text">Rsyslog 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsyslog-配置介绍"><span class="nav-number">2.</span> <span class="nav-text">Rsyslog 配置介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsyslog-常用模块"><span class="nav-number">3.</span> <span class="nav-text">Rsyslog 常用模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsyslog-TCP-OR-UDP"><span class="nav-number">4.</span> <span class="nav-text">Rsyslog TCP OR UDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rsyslog-模板"><span class="nav-number">5.</span> <span class="nav-text">Rsyslog 模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后"><span class="nav-number">6.</span> <span class="nav-text">然后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ElasticSearch-使用过程相关方法和配置"><span class="nav-number">1.</span> <span class="nav-text">ElasticSearch 使用过程相关方法和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘相关"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群中节点上下线"><span class="nav-number">1.2.</span> <span class="nav-text">集群中节点上下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群级别的-include-require-exclude-三种filter影响集群级的shard分配过程"><span class="nav-number">1.3.</span> <span class="nav-text">集群级别的 include/require/exclude 三种filter影响集群级的shard分配过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用cerebro来管理elasticsearch集群"><span class="nav-number">1.4.</span> <span class="nav-text">使用cerebro来管理elasticsearch集群</span></a></li></ol></li></ol></div>
             
 
           </div>
